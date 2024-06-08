@@ -88,9 +88,6 @@
                 case 'cnki':
                     url = `https://kns.cnki.net/kns/search?dbcode=SCDB&kw=${encodeURIComponent(query)}`;
                     break;
-                case 'wos':
-                    url = `https://www.webofscience.com/wos/woscc/basic-search?value(input1)=${encodeURIComponent(query)}`;
-                    break;
                 case 'googlescholar':
                     url = `https://scholar.lanfanshu.cn/scholar?hl=zh-CN&as_sdt=0%2C5&q=${encodeURIComponent(query)}`;
                     break;
@@ -101,6 +98,7 @@
 </head>
 <body>
     <div class="container">
+        <div id="datetime"></div>
         <h1>学术搜索</h1>
         <form class="search-box" onsubmit="handleSearch(event)">
             <input type="text" id="search-input" placeholder="请输入搜索内容" required>
@@ -108,7 +106,6 @@
                 <option value="baidu">百度</option>
                 <option value="google">谷歌</option>
                 <option value="cnki">知网</option>
-                <option value="wos">Web of Science</option>
                 <option value="googlescholar">谷歌学术镜像</option>
             </select>
             <input type="submit" value="搜索">
@@ -117,8 +114,8 @@
             <div>
                 <a href="https://www.tsinghua.edu.cn" target="_blank">清华大学</a>
                 <a href="https://www.civil.tsinghua.edu.cn" target="_blank">清华土木</a>
-                <a href="https://www.csu.edu.cn" target="_blank">中南大学</a>
-                <a href="https://civil.csu.edu.cn" target="_blank">中南土木</a>
+                <a href="https://www.webofscience.com" target="_blank">Web of Science</a>
+                <a href="https://scholar.lanfanshu.cn" target="_blank">中南土木</a>
             </div>
             <div>
                 <a href="https://www.bilibili.com" target="_blank">Bilibili</a>
@@ -128,5 +125,16 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+            const formattedDate = now.toLocaleDateString('zh-CN', options);
+            document.getElementById('datetime').innerText = formattedDate;
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
 </body>
 </html>
