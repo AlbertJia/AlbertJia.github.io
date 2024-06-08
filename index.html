@@ -5,16 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>学术搜索</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* Light Theme */
+        body.light-mode {
             background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+            color: #333;
+        }
+        /* Dark Theme */
+        body.dark-mode {
+            background-color: #333;
+            color: #f4f4f4;
         }
         .container {
             text-align: center;
@@ -24,6 +23,7 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             width: 80%;
             max-width: 800px;
+            transition: background-color 0.5s, color 0.5s;
         }
         h1 {
             margin-bottom: 30px;
@@ -70,33 +70,25 @@
         .links a:hover {
             text-decoration: underline;
         }
-    </style>
-    <script>
-        function handleSearch(event) {
-            event.preventDefault();
-            const query = document.getElementById('search-input').value;
-            const engine = document.getElementById('search-engine').value;
-            let url = '';
-
-            switch(engine) {
-                case 'baidu':
-                    url = `https://www.baidu.com/s?wd=${encodeURIComponent(query)}`;
-                    break;
-                case 'google':
-                    url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-                    break;
-                case 'cnki':
-                    url = `https://kns.cnki.net/kns/search?dbcode=SCDB&kw=${encodeURIComponent(query)}`;
-                    break;
-                case 'googlescholar':
-                    url = `https://scholar.lanfanshu.cn/scholar?hl=zh-CN&as_sdt=0%2C5&q=${encodeURIComponent(query)}`;
-                    break;
-            }
-            window.open(url, '_blank');
+        .contact-info {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
         }
-    </script>
+        #theme-switch-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: transparent;
+            color: #007BFF;
+            border: none;
+            cursor: pointer;
+            outline: none;
+        }
+    </style>
 </head>
-<body>
+<body class="light-mode">
+    <button id="theme-switch-btn" onclick="toggleTheme()">切换主题</button>
     <div class="container">
         <div id="datetime"></div>
         <h1>学术搜索</h1>
@@ -125,6 +117,10 @@
             </div>
         </div>
     </div>
+    <div class="contact-info">
+        邮箱：Albert_Jia@outlook.com<br>
+        QQ：1183237239
+    </div>
 
     <script>
         function updateTime() {
@@ -135,6 +131,42 @@
         }
         updateTime();
         setInterval(updateTime, 1000);
+
+        function toggleTheme() {
+            const body = document.body;
+            body.classList.toggle('light-mode');
+            body.classList.toggle('dark-mode');
+        }
+
+        // Automatic theme change based on system theme or time
+        const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+        const currentHour = new Date().getHours();
+        if (prefersDarkScheme.matches || (currentHour >= 19 || currentHour < 6)) {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        function handleSearch(event) {
+            event.preventDefault();
+            const query = document.getElementById('search-input').value;
+            const engine = document.getElementById('search-engine').value;
+            let url = '';
+
+            switch(engine) {
+                case 'baidu':
+                    url = `https://www.baidu.com/s?wd=${encodeURIComponent(query)}`;
+                    break;
+                case 'google':
+                    url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                    break;
+                case 'cnki':
+                    url = `https://kns.cnki.net/kns/search?dbcode=SCDB&kw=${encodeURIComponent(query)}`;
+                    break;
+                case 'googlescholar':
+                    url = `https://scholar.lanfanshu.cn/scholar?hl=zh-CN&as_sdt=0%2C5&q=${encodeURIComponent(query)}`;
+                    break;
+            }
+            window.open(url, '_blank');
+        }
     </script>
 </body>
 </html>
