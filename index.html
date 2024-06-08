@@ -3,122 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Albert`个人网页</title>
+    <title>学术搜索</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
         .container {
-            width: 80%;
-            margin: 0 auto;
+            text-align: center;
+            background: #fff;
             padding: 20px;
-            background-color: #fff;
+            border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 50px;
         }
         h1 {
-            text-align: center;
-            color: #4CAF50;
+            margin-bottom: 20px;
         }
-        .profile {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .profile img {
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-        }
-        .contact {
-            margin-top: 30px;
-            text-align: center;
-        }
-        .contact p {
-            margin: 5px 0;
-        }
-        .gallery {
+        .search-box {
             display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin-top: 0px;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
         }
-        .gallery img {
-            height: 200px;
-            max-width: 100%;
-            object-fit: cover;
-            margin: 5px;
-            border: 2px solid #4CAF50;
-            border-radius: 10px;
+        .search-box input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px 0 0 5px;
+            outline: none;
         }
-        .social-media {
-            text-align: center;
-            margin-top: 20px;
+        .search-box input[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
         }
-        .social-media a {
-            margin: 0 10px;
-            text-decoration: none;
-            color: #4CAF50;
-        }
-        .social-media a:hover {
-            text-decoration: underline;
-        }
-        .hobbies {
-            text-align: center;
-            margin-top: 20px;
-            margin-bottom: 0px;
-        }
-        .other-images {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .other-images a {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-        .other-images a:hover {
-            text-decoration: underline;
+        .search-box input[type="submit"]:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Albert`个人网页</h1>
-        <div class="profile">
-            <img src="profile.jpg" alt="TouXiang">
-            <h2>Albert</h2>
-            <p>Majored in civil engineering, especially composite structure.</p>
-            <p>Interested in intelligent construction, building industrialization.</p>
-            <br>
-            <p>2024-now&nbsp;&nbsp;Tsinghua University</p>
-            <p>2020-2024&nbsp;&nbsp;&nbsp;&nbsp;Central South University</p>
-        </div>
-        <div class="contact">
-            <h3>联系方式</h3>
-            <p>Email: <a href="mailto:Albert_Jia@outlook.com">Albert_Jia@outlook.com</a></p>
-            <p>QQ: 1183237239</p>
-        </div>
-        <div class="hobbies">
-            <h3>摄影爱好者</h3>
-        </div>
-        <div class="gallery">
-            <img src="image1.jpg" alt="展示图片1">
-            <img src="堆栈1-3.jpg" alt="展示图片2">
-        </div>
-        <div class="other-images">
-            <p>其他图片见 <a href="https://www.xiaohongshu.com/user/profile/62120395000000001000a771?xhsshare=CopyLink&appuid=62120395000000001000a771&apptime=1716653498" target="_blank">小红书</a></p>
-        </div>
-        <div class="social-media">
-            <h3>网站链接</h3>
-            <a href="https://www.civil.tsinghua.edu.cn/ce/" target="_blank">清华土木</a>
-            <a href="https://civil.csu.edu.cn/" target="_blank">中南土木</a>
-            <a href="https://www.bilibili.com/" target="_blank">Bilibili</a>
-            <a href="https://chat.openai.com/" target="_blank">Chatgpt</a>
-            <a href="https://yiyan.baidu.com/" target="_blank">文心一言</a>
-        </div>
+        <h1>学术搜索</h1>
+        <form class="search-box" action="https://www.baidu.com/s" method="get" target="_blank">
+            <input type="text" name="wd" placeholder="请输入搜索内容">
+            <input type="submit" value="搜索">
+        </form>
     </div>
 </body>
 </html>
