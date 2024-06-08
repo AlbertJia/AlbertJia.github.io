@@ -31,12 +31,14 @@
             width: 100%;
             max-width: 500px;
             margin: 0 auto;
+            flex-direction: column;
         }
-        .search-box input[type="text"] {
+        .search-box input[type="text"], .search-box select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
-            border-radius: 5px 0 0 5px;
+            border-radius: 5px;
+            margin-bottom: 10px;
             outline: none;
         }
         .search-box input[type="submit"] {
@@ -44,19 +46,53 @@
             border: none;
             background-color: #007BFF;
             color: white;
-            border-radius: 0 5px 5px 0;
+            border-radius: 5px;
             cursor: pointer;
         }
         .search-box input[type="submit"]:hover {
             background-color: #0056b3;
         }
     </style>
+    <script>
+        function handleSearch(event) {
+            event.preventDefault();
+            const query = document.getElementById('search-input').value;
+            const engine = document.getElementById('search-engine').value;
+            let url = '';
+
+            switch(engine) {
+                case 'baidu':
+                    url = `https://www.baidu.com/s?wd=${encodeURIComponent(query)}`;
+                    break;
+                case 'google':
+                    url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                    break;
+                case 'cnki':
+                    url = `https://kns.cnki.net/kns8/AdvSearch?keyword=${encodeURIComponent(query)}`;
+                    break;
+                case 'wos':
+                    url = `https://www.webofscience.com/wos/woscc/basic-search?value(input1)=${encodeURIComponent(query)}`;
+                    break;
+                case 'googlescholar':
+                    url = `https://scholar.google.com/scholar?q=${encodeURIComponent(query)}`;
+                    break;
+            }
+            window.open(url, '_blank');
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <h1>学术搜索</h1>
-        <form class="search-box" action="https://www.baidu.com/s" method="get" target="_blank">
-            <input type="text" name="wd" placeholder="请输入搜索内容">
+        <form class="search-box" onsubmit="handleSearch(event)">
+            <input type="text" id="search-input" placeholder="请输入搜索内容" required>
+            <select id="search-engine">
+                <option value="baidu">百度搜索</option>
+                <option value="google">谷歌搜索</option>
+                <option value="cnki">知网搜索</option>
+                <option value="wos">Web of Science搜索</option>
+                <option value="googlescholar">谷歌学术搜索</option>
+            </select>
             <input type="submit" value="搜索">
         </form>
     </div>
